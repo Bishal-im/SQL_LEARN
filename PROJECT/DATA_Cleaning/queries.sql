@@ -160,6 +160,37 @@ MODIFY COLUMN `date` DATE;
 
 select date 
 from layoffs_staging2;
+
+
+-- work with percenatge --------------------------------------------------------------------------------------------------------------
+
+-- Restore original percentage_laid_off values from raw table
+UPDATE layoffs_staging2 ls2
+JOIN layoffs ls
+ON ls2.company = ls.company
+   AND ls2.location = ls.location
+   AND ls2.total_laid_off = ls.total_laid_off
+   AND ls2.funds_raised = ls.funds_raised
+   AND ls2.stage = ls.stage
+   AND ls2.industry = ls.industry
+SET ls2.percentage_laid_off = ls.percentage_laid_off;
+
+
+-- updating the percentage table as 40% to 0.40 ( for eeasier calsulation later)
+UPDATE layoffs_staging2
+SET percentage_laid_off = 
+    ROUND(CAST(REPLACE(percentage_laid_off, '%', '') AS DECIMAL(5,2)) / 100, 2)
+WHERE percentage_laid_off IS NOT NULL AND percentage_laid_off != '';
+
+
+UPDATE layoffs_staging2
+SET percentage_laid_off = NULL
+WHERE percentage_laid_off = '';
+
+
+select company , max(percentage_laid_off)
+from layoffs_staging2
+group by company;
 -- __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 -- removing NULL values or Blank values
@@ -195,7 +226,7 @@ from layoffs_staging2
 where funds_raised is NUll
 AND percentage_laid_off is NULL;
 
-DELETE
+DELETE  				  -- Deleted rows where both funds_raised and percentage_laid_off were null (to keep only meaningful data.)
 from layoffs_staging2
 where funds_raised is NUll
 AND percentage_laid_off is NULL;
@@ -207,4 +238,16 @@ select *
 from layoffs_staging2;
 
    
+   
+ALTER TABLE layoffs_staging2
+DROP column row_num;
+
+select * 
+from layoffs_staging2;
+
+ALTER TABLE layoffs_staging2
+DROP column percentage_laid_off_num;
+
+
+
 
