@@ -14,12 +14,13 @@ This repository contains SQL exercises and practice files to revise and strength
 - **Phase 9:** Stored Procedures, Triggers & Events
 - Additional practice on subqueries, indexes, and constraints
 
-## Project Folder: Data Cleaning & Exploratory Analysis
-- **Cleaning File:** `queries.sql`  
-  - Contains SQL queries for cleaning the dataset  
-  - Dataset source: [Layoffs 2022 on Kaggle](https://www.kaggle.com/datasets/swaptr/layoffs-2022)
-- **Exploratory File:** `Exploratory Data Analysis.sql`  
-  - Contains SQL queries to explore and analyze the cleaned data  
+## Project Folder: 
+  ## Data Cleaning: 
+  - **Cleaning File:** `queries.sql`  
+    - Contains SQL queries for cleaning the dataset  
+    - Dataset source: [Layoffs 2022 on Kaggle](https://www.kaggle.com/datasets/swaptr/layoffs-2022)
+  - **Exploratory File:** `Exploratory Data Analysis.sql`  
+    - Contains SQL queries to explore and analyze the cleaned data  
 
 ## Purpose
 - To improve and revise SQL skills regularly
