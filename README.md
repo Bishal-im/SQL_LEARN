@@ -1,6 +1,6 @@
 # SQL Learning & Practice
 
-
+hhdh
 This repository contains SQL exercises and practice files to revise and strengthen my knowledge of SQL concepts.
 
 ## What’s Inside
